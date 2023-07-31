@@ -211,7 +211,7 @@ async function handleResetPassword() {
         <!-- Add Tabs -->
         <NTabs v-model:value="activeTab" type="line">
           <NTabPane name="login" :tab="$t('common.login')">
-            <NInput v-model:value="username" type="text" :placeholder="$t('common.email')" class="mb-2" />
+            <NInput v-model:value="username" type="text" :placeholder="$t('common.loginUserName')" class="mb-2" />
             <NInput v-model:value="password" type="password" :placeholder="$t('common.password')" class="mb-2" @keypress="handlePress" />
 
             <NButton block type="primary" :disabled="disabled" :loading="loading" @click="handleLogin">
@@ -219,7 +219,7 @@ async function handleResetPassword() {
             </NButton>
           </NTabPane>
 
-          <NTabPane v-if="authStore.session && authStore.session.allowRegister" name="register" :tab="$t('common.register')">
+          <!-- <NTabPane v-if="authStore.session && authStore.session.allowRegister" name="register" :tab="$t('common.register')">
             <NInput v-model:value="username" type="text" :placeholder="$t('common.email')" class="mb-2" />
             <NInput v-model:value="password" type="password" :placeholder="$t('common.password')" class="mb-2" @input="handlePasswordInput" />
             <NInput
@@ -234,9 +234,9 @@ async function handleResetPassword() {
             <NButton block type="primary" :disabled="disabled || password !== confirmPassword" :loading="loading" @click="handleRegister">
               {{ $t('common.register') }}
             </NButton>
-          </NTabPane>
+          </NTabPane> -->
 
-          <NTabPane name="resetPassword" :tab="$t('common.resetPassword')">
+          <!-- <NTabPane name="resetPassword" :tab="$t('common.resetPassword')">
             <NInput v-model:value="username" :disabled="sign !== undefined" type="text" :placeholder="$t('common.email')" class="mb-2" />
             <NInput v-if="!!sign" v-model:value="password" type="password" :placeholder="$t('common.password')" class="mb-2" @input="handlePasswordInput" />
             <NInput
@@ -253,7 +253,7 @@ async function handleResetPassword() {
             <NButton v-else block type="primary" :disabled="disabled || password !== confirmPassword" :loading="loading" @click="handleResetPassword">
               {{ $t('common.resetPassword') }}
             </NButton>
-          </NTabPane>
+          </NTabPane> -->
         </NTabs>
         <!-- End Tabs -->
       </div>

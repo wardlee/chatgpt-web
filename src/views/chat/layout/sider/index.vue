@@ -73,9 +73,9 @@ watch(
     <div class="flex flex-col h-full" :style="mobileSafeArea">
       <main class="flex flex-col flex-1 min-h-0">
         <div class="p-4">
-          <NButton dashed block :disabled="!!authStore.session?.auth && !authStore.token" @click="handleAdd">
+          <!-- <NButton dashed block :disabled="!!authStore.session?.auth && !authStore.token" @click="handleAdd">
             {{ $t('chat.newChatButton') }}
-          </NButton>
+          </NButton> -->
         </div>
         <div class="flex-1 min-h-0 pb-4 overflow-hidden">
           <List />

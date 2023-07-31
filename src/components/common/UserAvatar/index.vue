@@ -13,7 +13,7 @@ const route = useRoute()
 const userStore = useUserStore()
 const authStore = useAuthStore()
 const { isMobile } = useBasicLayout()
-const showPermission = ref(false)
+const showPermission = ref(true)
 
 const needPermission = computed(() => !!authStore.session?.auth && !authStore.token && (isMobile.value || showPermission.value))
 

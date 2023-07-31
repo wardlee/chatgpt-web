@@ -66,7 +66,7 @@ const show = computed({
             <Advanced />
           </div>
         </NTabPane>
-        <NTabPane name="Statistics" tab="Statistics">
+        <NTabPane v-if="userStore.userInfo.root" name="Statistics" tab="Statistics">
           <template #tab>
             <SvgIcon class="text-lg" icon="ri:bar-chart-box-line" />
             <span class="ml-2">{{ $t('setting.statistics') }}</span>
