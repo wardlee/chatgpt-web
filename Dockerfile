@@ -60,4 +60,4 @@ COPY --from=backend /app/src/utils/templates /app/build/templates
 EXPOSE 3002
 
 CMD ["sh", "-c", "pnpm run prod"]
-#./replace-title.sh &&
+#./replace-title.sh && 
