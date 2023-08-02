@@ -37,6 +37,7 @@ export default {
     resetPassword: '重置密码',
     resetPasswordMail: '发送重置密码邮件',
     auditTip: '敏感词对管理员不生效',
+    authorTip: 'WardLee',
   },
   chat: {
     newChatButton: '新建聊天',

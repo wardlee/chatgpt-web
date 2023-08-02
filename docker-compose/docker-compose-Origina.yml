@@ -2,8 +2,8 @@ version: '3'
 
 services:
   app:
-    image: wardlee1/chatgpt-ward # 总是使用latest,更新时重新pull该tag镜像即可
-    container_name: chatgptweb-ward
+    image: kerwin1202/chatgpt-web # 总是使用latest,更新时重新pull该tag镜像即可
+    container_name: chatgptweb
     restart: unless-stopped
     ports:
       - 3002:3002
@@ -11,20 +11,20 @@ services:
       - database
     environment:
       TZ: Asia/Shanghai
-      # 访问jwt加密参数，可选 不为空则允许登录 同时需要设置 MONGODB_URL ，必填，否则不会登陆
-      AUTH_SECRET_KEY: WardNb
+      # 访问jwt加密参数，可选 不为空则允许登录 同时需要设置 MONGODB_URL
+      AUTH_SECRET_KEY:
       # 每小时最大请求次数，可选，默认无限
-      MAX_REQUEST_PER_HOUR: 1000000
+      MAX_REQUEST_PER_HOUR: 0
       # 网站名称
-      SITE_TITLE: ChatGpt - WardLee
+      SITE_TITLE: ChatGpt Web
       # mongodb 的连接字符串
-      MONGODB_URL: 'mongodb://WardNbmongodb:qOIIrWIkqx1GSJ9H@database:27017'
+      MONGODB_URL: 'mongodb://chatgpt:xxxx@database:27017'
       # 开启注册之后 密码加密的盐
-      PASSWORD_MD5_SALT: WardNb
+      PASSWORD_MD5_SALT: anysalt
       # 开启注册之后 超级管理邮箱
-      ROOT_USER: wardw@qq.com
+      ROOT_USER: xxx@qq.com
       # 网站是否开启注册 必须开启, 否则管理员都没法注册, 可后续关闭
-      REGISTER_ENABLED: false
+      REGISTER_ENABLED: true
       # 更多配置, 在运行后, 注册管理员, 在管理员页面中设置
     links:
       - database
@@ -38,8 +38,8 @@ services:
     volumes:
       - mongodb:/data/db
     environment:
-      MONGO_INITDB_ROOT_USERNAME: WardNbmongodb
-      MONGO_INITDB_ROOT_PASSWORD: qOIIrWIkqx1GSJ9H
+      MONGO_INITDB_ROOT_USERNAME: chatgpt
+      MONGO_INITDB_ROOT_PASSWORD: xxxx
       MONGO_INITDB_DATABASE: chatgpt
 
   mongo-gui:
@@ -49,7 +49,7 @@ services:
     ports:
       - '4321:4321'
     environment:
-      - MONGO_URL=mongodb://WardNbmongodb:qOIIrWIkqx1GSJ9H@database:27017
+      - MONGO_URL=mongodb://chatgpt:xxxx@database:27017
     links:
       - database
     depends_on:

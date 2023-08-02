@@ -217,9 +217,15 @@ async function handleResetPassword() {
             <NButton block type="primary" :disabled="disabled" :loading="loading" @click="handleLogin">
               {{ $t('common.login') }}
             </NButton>
+            <!-- <NText style="width: 100%; text-align: center; color: gray;">这是一个提示</NText> -->
+            <div style="display: flex; justify-content: right; margin-top: 20px;">
+              <NText style="color: gray;">
+                {{ $t('common.authorTip') }}
+              </NText>
+            </div>
           </NTabPane>
 
-          <!-- <NTabPane v-if="authStore.session && authStore.session.allowRegister" name="register" :tab="$t('common.register')">
+          <!-- MWard <NTabPane v-if="authStore.session && authStore.session.allowRegister" name="register" :tab="$t('common.register')">
             <NInput v-model:value="username" type="text" :placeholder="$t('common.email')" class="mb-2" />
             <NInput v-model:value="password" type="password" :placeholder="$t('common.password')" class="mb-2" @input="handlePasswordInput" />
             <NInput
