@@ -24,13 +24,15 @@ services:
       # 开启注册之后 超级管理邮箱
       ROOT_USER: wardw@qq.com
       # 网站是否开启注册 必须开启, 否则管理员都没法注册, 可后续关闭
-      REGISTER_ENABLED: false
+      REGISTER_ENABLED: 0
       # 更多配置, 在运行后, 注册管理员, 在管理员页面中设置
     links:
       - database
 
   database:
     image: mongo
+    container_name: chatgptweb-database
+    restart: unless-stopped
     ports:
       - '27017:27017'
     expose:
@@ -57,14 +59,14 @@ services:
 
   nginx:
     image: nginx:alpine
-    container_name: chatgptweb-database
+    container_name: chatgptweb-nginx
     restart: unless-stopped
     ports:
       - '80:80'
     expose:
       - '80'
     volumes:
-      - ./nginx/html:/usr/share/nginx/html
+      # - ./nginx/html:/usr/share/nginx/html
       - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
     links:
       - app

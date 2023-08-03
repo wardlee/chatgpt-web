@@ -32,6 +32,7 @@ services:
   database:
     image: mongo
     container_name: chatgptweb-database
+    restart: unless-stopped
     ports:
       - '27017:27017'
     expose:
@@ -65,7 +66,7 @@ services:
     expose:
       - '80'
     volumes:
-      - ./nginx/html:/usr/share/nginx/html
+      # - ./nginx/html:/usr/share/nginx/html
       - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
     links:
       - app
